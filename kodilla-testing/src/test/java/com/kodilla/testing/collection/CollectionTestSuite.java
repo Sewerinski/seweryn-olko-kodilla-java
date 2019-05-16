@@ -41,6 +41,6 @@ public class CollectionTestSuite {
         //When
         List<Integer> result = normalList.exterminate(numberList);
         //Then
-        Assert.assertEquals(3,3, result.size());
+        Assert.assertEquals(3, result.size());
     }
 }
