@@ -23,8 +23,8 @@ apply plugin: 'java'
 dependencies {
     //External dependecies
     compile('org.springframework.boot:spring-boot-starter-web')
-    
+
     //Test dependecies
     testCompile('junit:junit:4.12')
-    testCompile('org.mockito:mockito-all:2.10.0')
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.10.0'
 }
