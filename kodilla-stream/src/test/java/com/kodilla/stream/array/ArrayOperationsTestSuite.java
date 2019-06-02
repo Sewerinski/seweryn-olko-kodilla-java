@@ -8,15 +8,16 @@ public class ArrayOperationsTestSuite {
     public void testGetAverage(){
         //Given
         int[] numbers = new int[5];
-
-        //When
         numbers[0] = 5;
         numbers[1] = 4;
         numbers[2] = 5;
         numbers[3] = 3;
         numbers[4] = 2;
 
+        //When
+        double avg = ArrayOperations.getAverage(numbers);
+
         //Then
-        Assert.assertEquals(3.8, ArrayOperations.getAverage(numbers),0);
+        Assert.assertEquals(3.8, avg,0);
     }
 }
