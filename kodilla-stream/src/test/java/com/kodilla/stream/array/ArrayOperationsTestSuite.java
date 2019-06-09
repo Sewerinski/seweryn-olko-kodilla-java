@@ -18,6 +18,6 @@ public class ArrayOperationsTestSuite {
         double avg = ArrayOperations.getAverage(numbers);
 
         //Then
-        Assert.assertEquals(3.8, avg,0);
+        Assert.assertEquals(3.8, avg, 0);
     }
 }
