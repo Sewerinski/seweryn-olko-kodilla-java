@@ -1,12 +1,12 @@
-package com.kodilla.good.patterns.challenges;
+package com.kodilla.good.patterns.foodchallenge;
 
-public class Application {
+public class App {
 
     public static void main(String[] args) {
         OrderRequestRetriever orderRequestRetriever = new OrderRequestRetriever();
         OrderRequest orderRequest = orderRequestRetriever.retrieve();
 
-        OrderProcessor orderProcessor = new OrderProcessor(new MailService(), new ProductOrderService(), new ProductOrderRepository());
+        OrderProcessor orderProcessor = new OrderProcessor(new ProductOrderService());
         orderProcessor.process(orderRequest);
     }
 }
