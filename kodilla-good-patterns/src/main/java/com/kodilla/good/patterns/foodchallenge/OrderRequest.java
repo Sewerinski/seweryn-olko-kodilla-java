@@ -3,7 +3,6 @@ package com.kodilla.good.patterns.foodchallenge;
 import java.time.LocalDateTime;
 
 public class OrderRequest {
-
     private Producer producer;
     private LocalDateTime orderDate;
 

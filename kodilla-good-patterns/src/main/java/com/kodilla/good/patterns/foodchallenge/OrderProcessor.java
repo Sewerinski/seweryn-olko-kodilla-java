@@ -2,18 +2,20 @@ package com.kodilla.good.patterns.foodchallenge;
 
 public class OrderProcessor {
 
-    private OrderInformation orderInformation;
+    private OrderService orderService;
+    private OrderDto orderDto;
 
-    public OrderProcessor(final OrderInformation orderInformation) {
-        this.orderInformation = orderInformation;
+    public OrderProcessor(final OrderService orderService, final OrderDto orderDto) {
+        this.orderService = orderService;
+        this.orderDto = orderDto;
     }
 
     public OrderDto process(final OrderRequest orderRequest) {
-        boolean isOrdered = orderInformation.order(orderRequest.getProducer(), orderRequest.getOrderDate());
+        boolean isOrdered = orderService.order(orderRequest.getProducer(), orderRequest.getOrderDate());
 
-        if (isOrdered) {
+        if(isOrdered) {
             return new OrderDto(orderRequest.getProducer(), true);
-        } else {
+        }else{
             return new OrderDto(orderRequest.getProducer(), false);
         }
     }

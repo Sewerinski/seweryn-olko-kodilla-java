@@ -2,24 +2,18 @@ package com.kodilla.good.patterns.foodchallenge;
 
 public class Producer {
     private String producerName;
-    private String productName;
-    private double productQuantity;
+    private Product product;
 
-    public Producer(String producerName, String productName, double productQuantity) {
+    public Producer(String producerName, Product product) {
         this.producerName = producerName;
-        this.productName = productName;
-        this.productQuantity = productQuantity;
+        this.product = product;
     }
 
     public String getProducerName() {
         return producerName;
     }
 
-    public String getProductName() {
-        return productName;
-    }
-
-    public double getProductQuantity() {
-        return productQuantity;
+    public Product getProduct() {
+        return product;
     }
 }
