@@ -2,19 +2,19 @@ package com.kodilla.good.patterns.foodchallenge;
 
 public class OrderDto {
 
-    public Producer producer;
-    public boolean isOrdered;
+    String product;
+    double productQuantity;
 
-    public OrderDto(final Producer producer, final boolean isOrdered) {
-        this.producer = producer;
-        this.isOrdered = isOrdered;
+    public OrderDto(String product, double productQuantity) {
+        this.product = product;
+        this.productQuantity = productQuantity;
     }
 
-    public Producer getProducer() {
-        return producer;
+    public String getProduct() {
+        return product;
     }
 
-    public boolean isOrdered() {
-        return isOrdered;
+    public double getProductQuantity() {
+        return productQuantity;
     }
 }
