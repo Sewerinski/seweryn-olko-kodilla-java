@@ -11,4 +11,5 @@ include 'module.kodilla.super'
 include 'kodilla-good-patterns'
 include 'kodilla-good-patterns'
 include 'kodilla-good-patterns'
+include 'kodilla-spring-intro'
 

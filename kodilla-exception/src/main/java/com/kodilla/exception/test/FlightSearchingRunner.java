@@ -24,7 +24,5 @@ public class FlightSearchingRunner {
         }catch (Exception e){
             System.out.println("Exception");
         }
-
-
     }
 }
