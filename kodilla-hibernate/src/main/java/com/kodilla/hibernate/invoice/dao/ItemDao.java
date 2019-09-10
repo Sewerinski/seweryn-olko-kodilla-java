@@ -1,9 +1,9 @@
 package com.kodilla.hibernate.invoice.dao;
 
-import com.kodilla.hibernate.invoice.Product;
+import com.kodilla.hibernate.invoice.Item;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductDao extends CrudRepository<Product, Long> {
+public interface ItemDao extends CrudRepository<Item, Long> {
 }

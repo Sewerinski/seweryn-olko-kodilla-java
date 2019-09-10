@@ -6,17 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "PRODUCT")
-public class Product {
+@Table(name = "INVOICE")
+public class Invoice {
     private long id;
-    private String name;
+    private String number;
     private List<Item> items = new ArrayList<>();
 
-    public Product() {
-    }
-
-    public Product(String name) {
-        this.name = name;
+    public Invoice(String number, List<Item> items) {
+        this.number = number;
+        this.items = items;
     }
 
     @Id
@@ -27,14 +25,14 @@ public class Product {
         return id;
     }
 
-    @Column(name = "NAME")
-    public String getName() {
-        return name;
+    @Column(name = "NUMBER")
+    public String getNumber() {
+        return number;
     }
 
     @OneToMany(
             targetEntity = Item.class,
-            mappedBy = "product",
+            mappedBy = "invoice",
             fetch = FetchType.LAZY
     )
     public List<Item> getItems() {
@@ -45,11 +43,11 @@ public class Product {
         this.id = id;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }
