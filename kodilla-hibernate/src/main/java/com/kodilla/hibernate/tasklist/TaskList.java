@@ -15,18 +15,7 @@ public class TaskList {
     private String description;
     private List<Task> tasks = new ArrayList<>();
 
-    @OneToMany(
-            targetEntity = Task.class,
-            mappedBy = "taskList",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
+    public TaskList() {
     }
 
     public TaskList(String listName, String description) {
@@ -50,6 +39,20 @@ public class TaskList {
     @Column(name = "DESCRIPTION")
     public String getDescription() {
         return description;
+    }
+
+    @OneToMany(
+            targetEntity = Task.class,
+            mappedBy = "taskList",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     public void setId(long id) {

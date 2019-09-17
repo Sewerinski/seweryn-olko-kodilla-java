@@ -8,12 +8,18 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
+@Transactional
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CompanyDaoTestSuite {
     @Autowired
     CompanyDao companyDao;
+    @Autowired
+    EmployeeDao employeeDao;
 
     @Test
     public void testSaveManyToMany() {
@@ -50,13 +56,46 @@ public class CompanyDaoTestSuite {
         Assert.assertNotEquals(0, softwareMachineId);
         Assert.assertNotEquals(0, dataMaestersId);
         Assert.assertNotEquals(0, greyMatterId);
+    }
 
-        //CleanUp
+    @Test
+    public void testNamedQueries() {
+        //Given
+        Employee js = new Employee("John", "Smith");
+        Employee ac = new Employee("Amanda", "Cable");
+        Employee gs = new Employee("George", "Stan");
+
+        Company g = new Company("Google");
+        Company f = new Company("Facebook");
+        Company t = new Company("Twitter");
+
+        g.getEmployees().add(js);
+        f.getEmployees().add(ac);
+        t.getEmployees().add(gs);
+
+        js.getCompanies().add(g);
+        ac.getCompanies().add(f);
+        gs.getCompanies().add(t);
+
+        employeeDao.save(js);
+        employeeDao.save(ac);
+        employeeDao.save(gs);
+
+        companyDao.save(g);
+        companyDao.save(f);
+        companyDao.save(t);
+
+        //When
+        List<Employee> searchByName = employeeDao.searchingEmployeesByName("Smith");
+        List<Company> firstCompanyLetters = companyDao.searchingCompanyByThreeFirstLetters("Fac");
+
+        //Then
         try {
-            companyDao.deleteById(softwareMachineId);
-            companyDao.deleteById(dataMaestersId);
-            companyDao.deleteById(greyMatterId);
-        } catch (Exception e) {
+            Assert.assertEquals(1, searchByName.size());
+            Assert.assertEquals(1, firstCompanyLetters.size());
+        } finally {
+            companyDao.deleteAll();
+            employeeDao.deleteAll();
         }
     }
 }
