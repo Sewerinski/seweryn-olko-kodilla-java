@@ -1,4 +1,4 @@
-package com.example.kodillapatterns2;
+package com.kodilla.patterns2;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
