@@ -59,7 +59,11 @@ public class FinderTestSuite {
 
         //Then
 
-        Assert.assertEquals(0, result.size());
+        try {Assert.assertEquals(1, result.size());
         Assert.assertEquals(1, result2.size());
+        } finally {
+            companyDao.deleteAll();
+            employeeDao.deleteAll();
+        }
     }
 }
