@@ -12,7 +12,7 @@ import java.util.List;
         ),
         @NamedQuery(
                 name = "Employee.searchingEmployeesByPart",
-                query = "FROM Employee WHERE lastname LIKE CONCAT('%', :PARTNAME, '%')"
+                query = "FROM Employee WHERE lastname LIKE :PARTNAME"
         )
 })
 @Entity
