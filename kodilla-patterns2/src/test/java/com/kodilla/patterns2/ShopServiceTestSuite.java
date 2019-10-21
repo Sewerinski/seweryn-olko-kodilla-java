@@ -20,6 +20,9 @@ public class ShopServiceTestSuite {
     @Autowired
     private ShopService shopService;
 
+    @Autowired
+    private OrderFacade orderFacade;
+
     @Test
     public void testShopServiceSubmitOrder() {
         long orderId = shopService.openOrder(1L);

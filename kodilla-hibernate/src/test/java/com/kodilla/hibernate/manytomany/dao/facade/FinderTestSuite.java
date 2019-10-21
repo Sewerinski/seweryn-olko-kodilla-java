@@ -1,7 +1,10 @@
-package com.kodilla.hibernate.manytomany.dao;
+package com.kodilla.hibernate.manytomany.dao.facade;
 
 import com.kodilla.hibernate.manytomany.Company;
 import com.kodilla.hibernate.manytomany.Employee;
+import com.kodilla.hibernate.manytomany.dao.CompanyDao;
+import com.kodilla.hibernate.manytomany.dao.EmployeeDao;
+import com.kodilla.hibernate.manytomany.facade.Finder;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,16 +18,16 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-public class CompanyDaoTestSuite {
-
+public class FinderTestSuite {
+    @Autowired
+    Finder finder;
     @Autowired
     CompanyDao companyDao;
-
     @Autowired
     EmployeeDao employeeDao;
 
     @Test
-    public void testSaveManyToMany() {
+    public void finderTest() {
         //Given
         Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
@@ -46,58 +49,17 @@ public class CompanyDaoTestSuite {
         lindaKovalsky.getCompanies().add(dataMaesters);
         lindaKovalsky.getCompanies().add(greyMatter);
 
-        //When
         companyDao.save(softwareMachine);
-        long softwareMachineId = softwareMachine.getId();
         companyDao.save(dataMaesters);
-        long dataMaestersId = dataMaesters.getId();
         companyDao.save(greyMatter);
-        long greyMatterId = greyMatter.getId();
-
-        //Then
-        Assert.assertNotEquals(0, softwareMachineId);
-        Assert.assertNotEquals(0, dataMaestersId);
-        Assert.assertNotEquals(0, greyMatterId);
-    }
-
-    @Test
-    public void testNamedQueries() {
-        //Given
-        Employee js = new Employee("John", "Smith");
-        Employee ac = new Employee("Amanda", "Cable");
-        Employee gs = new Employee("George", "Stan");
-
-        Company g = new Company("Google");
-        Company f = new Company("Facebook");
-        Company t = new Company("Twitter");
-
-        g.getEmployees().add(js);
-        f.getEmployees().add(ac);
-        t.getEmployees().add(gs);
-
-        js.getCompanies().add(g);
-        ac.getCompanies().add(f);
-        gs.getCompanies().add(t);
-
-        employeeDao.save(js);
-        employeeDao.save(ac);
-        employeeDao.save(gs);
-
-        companyDao.save(g);
-        companyDao.save(f);
-        companyDao.save(t);
 
         //When
-        List<Employee> searchByName = employeeDao.searchingEmployeesByName("Smith");
-        List<Company> firstCompanyLetters = companyDao.searchingCompanyByThreeFirstLetters("Fac");
+        List<Company> result = finder.findCompany("%chine%");
+        List<Employee> result2 = finder.findEmployee("%kson%");
 
         //Then
-        try {
-            Assert.assertEquals(1, searchByName.size());
-            Assert.assertEquals(1, firstCompanyLetters.size());
-        } finally {
-            companyDao.deleteAll();
-            employeeDao.deleteAll();
-        }
+
+        Assert.assertEquals(0, result.size());
+        Assert.assertEquals(1, result2.size());
     }
 }

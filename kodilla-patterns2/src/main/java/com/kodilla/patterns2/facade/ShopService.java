@@ -100,7 +100,7 @@ public class ShopService {
         Iterator<Order> orderIterator = orders.stream()
                 .filter(o -> o.getOrderId().equals(orderId))
                 .iterator();
-        while(orderIterator.hasNext()) {
+        while (orderIterator.hasNext()) {
             Order theOrder = orderIterator.next();
             if (!theOrder.isVerified()) {
                 theOrder.setSubmitted(true);
@@ -114,7 +114,7 @@ public class ShopService {
         Iterator<Order> orderIterator = orders.stream()
                 .filter(o -> o.getOrderId().equals(orderId))
                 .iterator();
-        while(orderIterator.hasNext()) {
+        while (orderIterator.hasNext()) {
             Order theOrder = orderIterator.next();
             orders.remove(theOrder);
         }

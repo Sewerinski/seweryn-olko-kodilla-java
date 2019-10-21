@@ -44,20 +44,20 @@ public class Order {
         return isPaid;
     }
 
-    public boolean isVerified() {
-        return isVerified;
-    }
-
-    public boolean isSubmitted() {
-        return isSubmitted;
-    }
-
     public void setPaid(boolean paid) {
         isPaid = paid;
     }
 
+    public boolean isVerified() {
+        return isVerified;
+    }
+
     public void setVerified(boolean verified) {
         isVerified = verified;
+    }
+
+    public boolean isSubmitted() {
+        return isSubmitted;
     }
 
     public void setSubmitted(boolean submitted) {
