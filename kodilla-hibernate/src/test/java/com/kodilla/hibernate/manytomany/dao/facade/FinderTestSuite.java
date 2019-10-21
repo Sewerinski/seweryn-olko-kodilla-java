@@ -11,13 +11,11 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Transactional
 public class FinderTestSuite {
     @Autowired
     Finder finder;
@@ -37,21 +35,13 @@ public class FinderTestSuite {
         Company dataMaesters = new Company("Data Maesters");
         Company greyMatter = new Company("Grey Matter");
 
-        softwareMachine.getEmployees().add(johnSmith);
-        dataMaesters.getEmployees().add(stephanieClarckson);
-        dataMaesters.getEmployees().add(lindaKovalsky);
-        greyMatter.getEmployees().add(johnSmith);
-        greyMatter.getEmployees().add(lindaKovalsky);
-
-        johnSmith.getCompanies().add(softwareMachine);
-        johnSmith.getCompanies().add(greyMatter);
-        stephanieClarckson.getCompanies().add(dataMaesters);
-        lindaKovalsky.getCompanies().add(dataMaesters);
-        lindaKovalsky.getCompanies().add(greyMatter);
-
         companyDao.save(softwareMachine);
         companyDao.save(dataMaesters);
         companyDao.save(greyMatter);
+
+        employeeDao.save(johnSmith);
+        employeeDao.save(stephanieClarckson);
+        employeeDao.save(lindaKovalsky);
 
         //When
         List<Company> result = finder.findCompany("%chine%");
@@ -59,11 +49,10 @@ public class FinderTestSuite {
 
         //Then
 
-        try {Assert.assertEquals(1, result.size());
+        Assert.assertEquals(1, result.size());
         Assert.assertEquals(1, result2.size());
-        } finally {
-            companyDao.deleteAll();
-            employeeDao.deleteAll();
-        }
+
+        companyDao.deleteAll();
+        employeeDao.deleteAll();
     }
 }

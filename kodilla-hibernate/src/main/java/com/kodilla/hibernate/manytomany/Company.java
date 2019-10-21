@@ -8,13 +8,16 @@ import java.util.List;
 @NamedNativeQueries({
         @NamedNativeQuery(
                 name = "Company.searchingCompanyByThreeFirstLetters",
-                query = "SELECT * FROM COMPANIES WHERE SUBSTRING(COMPANY_NAME, 1, 3) = :COMPANYNAME"
+                query = "SELECT * FROM companies WHERE SUBSTRING(COMPANY_NAME, 1, 3) = :COMPANYNAME",
+                resultClass = Company.class
         ),
         @NamedNativeQuery(
                 name = "Company.searchingCompanyByPart",
-                query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME LIKE :PARTNAME"
+                query = "SELECT * FROM companies WHERE COMPANY_NAME LIKE :PARTNAME",
+                resultClass = Company.class
         )
 })
+
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
