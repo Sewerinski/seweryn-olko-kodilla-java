@@ -1,13 +1,11 @@
 plugins {
-    id 'org.springframework.boot'
     id 'java'
 }
 
-apply plugin: 'io.spring.dependency-management'
+group 'com.kodilla'
+version '0.0.1-SNAPSHOT'
 
-group = 'com.kodilla'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
